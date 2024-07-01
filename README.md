@@ -1,5 +1,6 @@
 # TMT-MS
-## Exploratory and Differential Abundnance Analysis of TMT-MS Data 
+
+## Exploratory and Differential Protein Abundnance Analysis of TMT-MS Data 
 
 This repository contains tools for exploratory and differential abundance analysis of TMT-MS data using a t-test and Linear and Nonlinear Mixed Effects Models (LNMM) using the `nlme` R package.
 
