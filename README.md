@@ -1,32 +1,30 @@
 # TMT-MS
 
-## Exploratory and Differential Protein Abundnance Analysis 
+## Exploratory and Differential Abundnance Analysis of TMT-MS data
 
 This repository contains tools for exploratory and differential abundance analysis of TMT-MS data using a t-test and Linear and Nonlinear Mixed Effects Models (LNMM) using the `nlme` R package.
 
 [Click here](https://htmlpreview.github.io/?https://github.com/nshanian/Documents/blob/main/TMT-MS-Proteomics.html) for the HTML version of this workflow with the output and the embedded plots.
 
-The dataset found in this gDrive folder (named ‘proteomicsSampleData.csv’) contains log2 peptide intensities (column "Log_Intensity") from an isobaric proteomics experiment designed to study changes over time after human cells are subjected to a particular type of stress.  There are 2 cell lines (Stress and Control), and between 1-3 replicates were sampled from each cell line at 6 timepoints.  Multiplexed samples were processed in four batches.  
+Differential Abundance Analysis of TMT-MS data
 
-The data file is organized into the following columns:
+The overall design is a genetically targeted proximity labeling experiment with dCas9 as the targeting moiety. The goal is to explore this dataset, to initially identify any proteins that are showing differences in abundance across the various conditions. Then lastly, to perform differential abundance analysis between different conditions. 
 
-●	Gene: A human-readable gene name associated with each protein
+There are 5 conditions (p1, p2, p3, NoGp, NoGn) each with 3 biological replicates.There are 15 columns representing the different conditions and their replicates. Each column represents a TMT channel. The values listed are abundances or intensities. 
 
-●	ProteinID: A unique protein identifier associated with each peptide
+Targeted positive controls:
 
-●	Peptide: A string corresponding to the different peptides
+-   The three positive conditions are p1, p2, and p3, with 3 replicates each. 
+-   Each “p” group represents separate single guide sgRNAs, targeting the promoter of FOXP2 just upstream of the transcription start site.
 
-●	Batch:  An identifier with four levels representing different batches. Each batch was analyzed on a separate, non-consecutive day.
+Untargeted negative controls:
 
-●	Time: Time point in the study in which the sample was extracted
+-   NoG is the dCas9 on its own with no guide RNA as a negative control.
+-   NoGp is a negative control that includes full labeling conditions.
+-   NoGn excluded the biotin phenol needed to actually do the labeling and represents background endogenously biotinylated proteins.
 
-●	CellType: A categorical variable describing weather Stress or Control cells were used
+First, a normal distribution of data is assumed, and log intensities are compared across conditions, with z scores determined for proteins showing log2 > 1 fold change. Then the data is modeled to a normal distribution and a t-test statistic is calculated with FDR-adjusted p-value to determine the significance of the observed fold changes. 
 
-●	Replicate: A categorical variable indicating replicate measurements of the same peptide within a single mass spec run
+For differential analysis, the log2 ratios between the promoter targeting cases are compared, that is, averaged p1-p3 controls vs either the averaged negative control with labeling (NoGp) or no labeling (NoGn). Linear and Nonlinear Mixed Effects model is used to extract fold change and p-value for each protein using averaged control vs NoGp or NoGn conditions.  
 
-●	Log_Intensity: The log2-transformed intensity measured by the mass spec
-
-The task is to explore this data set and identify any proteins that might be changing in abundance through time and as a result of the stress induction.
-
-This workflow will import the dataset, perform preprocessing and differential abundance analysis. First, a normal or normal-like distribution is assumed and a t-test is performed. Proteins are filtered based on an FDR-adjusted p-value threshold (< 0.05) and a log2 fold change threshold (> 1). Then Linear and Nonlinear Mixed Effects Models (LNMM) approach is taken to model the data and extract fold change information and the corresponding p-values. Initial results are reported and each model is evaluated by running diagnostics and comparing the residuals, or the difference between the predicted value and the actual value (i.e. the 'error' in the predicted value).
 
