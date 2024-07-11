@@ -4,7 +4,7 @@
 
 This repository contains tools for exploratory and differential abundance analysis of TMT-MS data using a t-test and Linear and Nonlinear Mixed Effects Models (LNMM) using the `nlme` R package.
 
-[Click here](https://htmlpreview.github.io/?https://github.com/nshanian/Documents/blob/main/TMT-MS-Proteomics.html) for the HTML version of this workflow with the output and the embedded plots.
+[Click here](https://htmlpreview.github.io/?https://github.com/nshanian/Documents/blob/main/TMT-MS_analysis.html) for the HTML version of this workflow with the output and the embedded plots.
 
 Differential Abundance Analysis of TMT-MS data
 
