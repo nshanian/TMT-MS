@@ -6,6 +6,8 @@ This repository contains tools for exploratory and differential abundance analys
 
 [Click here](https://htmlpreview.github.io/?https://github.com/nshanian/Documents/blob/main/TMT-MS_analysis.html) for the HTML version of this workflow with the output and the embedded plots.
 
+[Click here](https://htmlpreview.github.io/?https://github.com/nshanian/Documents/blob/main/TMT-MS_NLME.html) for the HTML version of another example workflow using non-linear mixed effects model (NLME) with the output and the embedded plots.
+
 Differential Abundance Analysis of TMT-MS data
 
 The overall design is a genetically targeted proximity labeling experiment with dCas9 as the targeting moiety. The goal is to explore this dataset, to initially identify any proteins that are showing differences in abundance across the various conditions. Then lastly, to perform differential abundance analysis between different conditions. 
@@ -23,7 +25,8 @@ Untargeted negative controls:
 -   NoGp is a negative control that includes full labeling conditions.
 -   NoGn excluded the biotin phenol needed to actually do the labeling and represents background endogenously biotinylated proteins.
 
-First, a normal distribution of data is assumed, and log intensities are compared across conditions, with z scores determined for proteins showing log2 > 1 fold change. Then the data is modeled to a normal distribution and a t-test statistic is calculated with FDR-adjusted p-value to determine the significance of the observed fold changes. 
+First, a normal distribution of data is assumed, and log intensities are compared across conditions, with z scores determined for proteins showing log2 > 1 fold change. Then the data is modeled to a normal distribution and a t-test statistic is calculated with FDR-adjusted p-value to determine the significance of the observed fold changes. Another example workflow is providec using non-linear mixed effects model (NLME) followed by model diagnostics. 
+
 
 For differential analysis, the log2 ratios between the promoter targeting cases are compared, that is, averaged p1-p3 controls vs either the averaged negative control with labeling (NoGp) or no labeling (NoGn). Linear and Nonlinear Mixed Effects model is used to extract fold change and p-value for each protein using averaged control vs NoGp or NoGn conditions.  
 
